@@ -12,6 +12,7 @@ import TrendAreaChart from '@/components/charts/TrendAreaChart'
 import TrendLineChart from '@/components/charts/TrendLineChart'
 import CareerScoreGauge from './widgets/CareerScoreGauge'
 import { useEmployeeSummary, useEmployeeTrends, useCareerScore } from '@/hooks/useEmployeeData'
+import { useLoans } from '@/hooks/useLoans'
 import { formatCurrency, formatDate } from '@/utils/format'
 import { ROUTES } from '@/constants'
 
@@ -27,6 +28,9 @@ export default function EmployeeDashboard() {
   const { data: summary, isLoading } = useEmployeeSummary()
   const { data: trends, isLoading: trendsLoading } = useEmployeeTrends()
   const { data: careerScore } = useCareerScore()
+  const { data: loans, isLoading: loansLoading } = useLoans()
+
+  const displayedLoans = loans || trends?.loanHistory || []
 
   return (
     <div>
@@ -85,13 +89,14 @@ export default function EmployeeDashboard() {
               <CardDescription>Your recent and active loans</CardDescription>
             </CardHeader>
             <CardContent>
-              {trendsLoading ? <TableSkeleton /> : <DataTable columns={loanColumns} data={trends?.loanHistory || []} />}
+              {trendsLoading || loansLoading ? <TableSkeleton /> : <DataTable columns={loanColumns} data={displayedLoans} />}
             </CardContent>
           </Card>
         </div>
 
         <div className="space-y-5">
           <CareerScoreGauge score={careerScore?.current || summary?.careerCreditScore} riskLevel={careerScore?.riskLevel} />
+
 
           <Card>
             <CardHeader>

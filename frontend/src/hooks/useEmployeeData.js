@@ -10,11 +10,24 @@ export function useEmployeeSummary() {
   })
 }
 
+function getMergedLoanHistory() {
+  try {
+    const raw = localStorage.getItem('salaryfund_user_loans')
+    const userLoans = raw ? JSON.parse(raw) : []
+    const existingIds = new Set(userLoans.map((l) => l.id))
+    return [...userLoans, ...loanHistory.filter((l) => !existingIds.has(l.id))]
+  } catch {
+    return loanHistory
+  }
+}
+
 export function useEmployeeTrends() {
   return useQuery({
     queryKey: [QUERY_KEYS.EMPLOYEE_SUMMARY, 'trends'],
-    queryFn: () =>
-      Promise.resolve({ salaryTrend, emiTrend, repaymentTrend, loanHistory }).then((d) => d),
+    queryFn: () => {
+      const mergedLoans = getMergedLoanHistory()
+      return Promise.resolve({ salaryTrend, emiTrend, repaymentTrend, loanHistory: mergedLoans })
+    },
   })
 }
 
