@@ -17,6 +17,7 @@ SalaryFund AI is an enterprise-grade fintech platform for Earned Wage Access (EW
 This repository is structured as a mono-repo containing both the backend and frontend components.
 
 ---
+i am nikhitha
 
 ## 📂 Project Directory Structure
 
