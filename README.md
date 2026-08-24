@@ -1,5 +1,7 @@
 # SalaryFund AI — EWA & AI-Powered Lending Platform
   hello iam veda   hhhhhhiiiii
+
+  
   hello iam tanusha
 SalaryFund AI is an enterprise-grade fintech platform for Earned Wage Access (EWA) and AI-powered lending. The project features a robust **FastAPI backend** running machine learning subsystems and a beautiful, modern **React frontend** built with Vite, Tailwind CSS, and shadcn/ui.
 
