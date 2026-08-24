@@ -77,25 +77,29 @@ export default function Login() {
 
   function handleQuickDemo(roleType) {
     let mockEmail = 'employee@company.com'
-    let name = 'Ananya Rao'
+    let name = 'Rahul Sharma (Key: cci26)'
+    let userId = 'demo-emp-01'
     let targetRoute = ROUTES.EMPLOYEE_DASHBOARD
 
     if (roleType === ROLES.HR) {
       mockEmail = 'hr@company.com'
       name = 'Rajesh Kumar (HR Head)'
+      userId = 'demo-hr-01'
       targetRoute = ROUTES.HR_DASHBOARD
     } else if (roleType === ROLES.LENDER) {
       mockEmail = 'nbfc@lender.com'
       name = 'Capital Alliance NBFC'
+      userId = 'demo-lender-01'
       targetRoute = ROUTES.LENDER_DASHBOARD
     } else if (roleType === ROLES.EMPLOYEE) {
       mockEmail = 'cci26@company.com'
       name = 'Rahul Sharma (Key: cci26)'
+      userId = 'demo-emp-01'
       targetRoute = ROUTES.EMPLOYEE_DASHBOARD
     }
 
     login({
-      user: { id: 'demo-user-id', name, email: mockEmail, role: roleType },
+      user: { id: userId, name, email: mockEmail, role: roleType },
       accessToken: 'demo-access-token',
       refreshToken: 'demo-refresh-token',
     })
